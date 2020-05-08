@@ -26,9 +26,9 @@ class StoreAttachment extends FormRequest
         return [
             'title' => "required",
             'type' => "required",
-            'tweet_info' => "required_if:type,tweet",
-            'link' => "required_unless:type,tweet",
-            'text' => "required_if:type,quote"
+            'text' => "required_if:type,quote",
+            'image' => "required_if:type,quote|required_if:type,image",
+            'link' => "required_if:type,youtube|required_if:type,tweet"
         ];
     }
 }

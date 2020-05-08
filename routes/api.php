@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::prefix('attachments')->group(function(){
+    Route::delete('/{attachment}','AttachmentController@destroy')->name('attachments.destroy');
+    Route::post('/{screen}','AttachmentController@store')->name('attachments.store');
+    Route::get('/{screen}','AttachmentController@index')->name('attachments.index');
+});
+Route::get('logout','UserController');
+Route::apiResource('screens', 'ScreenController');
+Route::apiResource('messages', 'MessageController');
+

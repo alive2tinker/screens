@@ -9,7 +9,10 @@ class Attachment extends Model
     protected $fillable = [
         'title',
         'type',
-        'link'
+        'text',
+        'image_link',
+        'youtube_link',
+        'tweet_info'
     ];
 
     protected $casts = [
