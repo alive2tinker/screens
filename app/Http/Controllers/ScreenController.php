@@ -12,7 +12,7 @@ class ScreenController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => 'show']);
+        $this->middleware('auth:api', ['except' => 'show']);
     }
 
     /**
@@ -22,8 +22,7 @@ class ScreenController extends Controller
      */
     public function index()
     {
-        $screens = ScreenResource::collection(Screen::orderby('created_at','desc')->paginate(10));
-        return response()->json($screens, 200);
+        return ScreenResource::collection(Screen::orderby('created_at','desc')->paginate(10));
     }
 
     /**
@@ -34,9 +33,9 @@ class ScreenController extends Controller
      */
     public function store(StoreScreen $request)
     {
-        $screen = Screen::create($request->input('title'));
+        $screen = Screen::create($request->only('title'));
 
-        return response()->json(['message' => "Screen Created Successfully", 'screenID' => $screen->id], 201);
+        return response()->json(new ScreenResource($screen), 201);
     }
 
     /**

@@ -3,16 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMessage;
+use App\Http\Resources\MessageResource;
 use App\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MessageController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:api');
     }
 
+    public function index()
+    {
+        return response()->json(MessageResource::collection(Message::all()), 200);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -21,9 +27,9 @@ class MessageController extends Controller
      */
     public function store(StoreMessage $request)
     {
-        $message = Message::create($request->input('text'));
+        $message = Message::create($request->only('text'));
 
-        return response()->json(['message' => "message created successfully"], 201);
+        return response()->json(new MessageResource($message), 201);
     }
 
     /**
@@ -35,9 +41,10 @@ class MessageController extends Controller
      */
     public function update(Request $request, Message $message)
     {
-        $message->update($request->input('text'));
+        Log::info($request);
+        $message->update($request->only('text'));
 
-        return response()->json(['message' => "message updated successfully"], 200);
+        return response()->json(new MessageResource($message), 200);
     }
 
     /**

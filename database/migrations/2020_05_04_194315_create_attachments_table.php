@@ -20,10 +20,11 @@ class CreateAttachmentsTable extends Migration
                 'quote',
                 'image',
                 'youtube',
-                'twitter'
+                'tweet'
             ]);
             $table->text('text')->nullable();
-            $table->string('link')->nullable();
+            $table->string('youtube_link')->nullable();
+            $table->string('image_link')->nullable();
             $table->text('tweet_info')->nullable();
             $table->timestamps();
         });
