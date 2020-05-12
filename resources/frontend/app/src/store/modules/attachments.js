@@ -51,7 +51,7 @@ const actions = {
     },
     deleteAttachment: ({commit}, payload) => {
         return new Promise((resolve, reject) => {
-            RequestManager().delete('api/attachments/'+payload)
+            RequestManager().delete('api/attachments/'+payload.attache+'/'+payload.screen)
                 .then(() => {
                     commit('deleteStateAttachment', payload);
                     resolve(true);
@@ -74,7 +74,7 @@ const mutations = {
         state.attachments.unshift(data);
     },
     deleteStateAttachment: (state, data) => {
-        var i = state.attachments.findIndex(s => s.id === data);
+        var i = state.attachments.findIndex(s => s.id === data.attache);
         state.attachments.splice(i, 1)
     }
 };

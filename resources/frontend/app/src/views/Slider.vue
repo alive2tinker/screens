@@ -4,7 +4,7 @@
         <div class="bg bg2"></div>
         <div class="bg bg3"></div>
         <div class="mx-auto my-5" id="content-container">
-            <div v-if="currentSlide.type === 'tweet'" class="py-5 mx-3">
+            <div v-if="currentSlide.type === 'tweet'" class="py-5 mx-3 bg-white shadow">
                 <b-media>
                     <template v-slot:aside>
                         <b-img :src="currentSlide.tweetInfo.user.profileImage" width="64" alt="placeholder"></b-img>
@@ -14,15 +14,17 @@
                     <p>
                         {{ currentSlide.text }}
                     </p>
-                    <div class="row justify-content-center">
-                        <div class="col-md-12">
-                            <img :src="image" style="max-height: 32vh;" class="img-fluid col-md-6 p-0" v-for="(image, index) in currentSlide.tweetInfo.images" :key="index">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-md-12">
+                                <img :src="image" style="max-height: 32vh;" class="img-fluid col-md-6 p-0" v-for="(image, index) in currentSlide.tweetInfo.images" :key="index">
+                            </div>
                         </div>
                     </div>
                 </b-media>
             </div>
             <div v-if="currentSlide.type === 'quote'">
-                <div class="quote-background"
+                <div class="quote-background shadow"
                      :style="
                              'background-image: url('+currentSlide.image+');'">
                     <div class="container-fluid py-5">
@@ -89,6 +91,7 @@
     import {mapGetters, mapActions} from 'vuex';
     import DigitalClock from "vue-digital-clock";
     import axios from 'axios';
+    import Pusher from 'pusher-js';
 
 
     export default {
@@ -103,7 +106,11 @@
             }
         },
         mounted() {
-            this.fetchScreen(this.$route.params.id);
+            this.$store.dispatch('fetchScreen',this.$route.params.id)
+            .then(()=> {
+                this.listenToNew();
+                this.listenToDelete();
+            });
             this.nextSlideRecursive();
         },
         computed: {
@@ -160,6 +167,27 @@
 
                 return {type: 'weather', data: weatherData}
             },
+            listenToNew: function () {
+                var pusher = new Pusher('e4f4ccec7528c67e4b31', {
+                    cluster: 'ap2'
+                });
+
+                var newChannel = pusher.subscribe('screen-'+this.currentScreen.id+'-new-attachments');
+                newChannel.bind('App\\Events\\NewAttachment', (data) => {
+                    this.currentScreen.attachments.push(data.attachment);
+                }).bind(this);
+            },
+            listenToDelete: function () {
+                var pusher = new Pusher('e4f4ccec7528c67e4b31', {
+                    cluster: 'ap2'
+                });
+
+                var deletedChannel = pusher.subscribe('screen-'+this.currentScreen.id+'-deleted-attachments');
+                deletedChannel.bind('App\\Events\\AttachmentDeleted', (data) => {
+                    var i = this.currentScreen.attachments.findIndex(s => s.id === data.attachment.id);
+                    this.currentScreen.attachments.splice(i, 1)
+                }).bind(this);
+            },
             ...mapActions(['fetchScreen'])
         }
     }
@@ -210,6 +238,9 @@
         clear: both;
         padding-top: 10%;
         padding-bottom: 10%;
+    }
+    .bg-white{
+        background: whitesmoke;
     }
     #content-container{
         width: 95%;

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Attachment;
+use App\Events\AttachmentDeleted;
+use App\Events\NewAttachment;
 use App\Http\Requests\StoreAttachment;
 use App\Http\Resources\AttachmentResource;
 use App\Screen;
@@ -89,6 +91,8 @@ class AttachmentController extends Controller
                 break;
         }
 
+        event(new NewAttachment(new AttachmentResource($attachment), $screen));
+
         return response()->json(new AttachmentResource($attachment), 201);
     }
 
@@ -121,7 +125,7 @@ class AttachmentController extends Controller
      * @param  \App\Attachment  $attachment
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Attachment $attachment)
+    public function destroy(Attachment $attachment, Screen $screen)
     {
         if ($attachment->type === 'tweet')
         {
@@ -131,6 +135,8 @@ class AttachmentController extends Controller
         Storage::delete('link');
 
         $attachment->delete();
+
+        event(new AttachmentDeleted($attachment, $screen));
 
         return response()->json($attachment, 200);
     }

@@ -124,7 +124,8 @@
             },
             handleDelete: function(attachment)
             {
-                this.$store.dispatch('deleteAttachment', attachment)
+                const payload =  {attache: attachment, screen: this.currentScreen.id};
+                this.$store.dispatch('deleteAttachment', payload)
                     .then(() => {
                         this.isLoading = false;
                         this.$swal('Done!', 'Attachment Deleted successfully', 'success');
