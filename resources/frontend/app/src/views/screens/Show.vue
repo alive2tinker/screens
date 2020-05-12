@@ -114,6 +114,7 @@
                         link: ''
                     }
                 }).catch((error) => {
+                    console.log(process.env.baseURL);
                     this.$swal('Oops!', error, 'error');
                     this.$bvModal.hide('new-attachment');
                 })
