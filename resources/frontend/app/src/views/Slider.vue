@@ -148,9 +148,9 @@
             generateWeatherSlide: function()
             {
                 let urls = [
-                    "http://api.openweathermap.org/data/2.5/weather?q=Riyadh,SA&units=metric&APPID=5a3311ede950f7587784e5f3a3104b99",
-                    "http://api.openweathermap.org/data/2.5/weather?q=Mecca,SA&units=metric&APPID=5a3311ede950f7587784e5f3a3104b99",
-                    "http://api.openweathermap.org/data/2.5/weather?q=Khobar,SA&units=metric&APPID=5a3311ede950f7587784e5f3a3104b99",
+                    "https://api.openweathermap.org/data/2.5/weather?q=Riyadh,SA&units=metric&APPID=5a3311ede950f7587784e5f3a3104b99",
+                    "https://api.openweathermap.org/data/2.5/weather?q=Mecca,SA&units=metric&APPID=5a3311ede950f7587784e5f3a3104b99",
+                    "https://api.openweathermap.org/data/2.5/weather?q=Khobar,SA&units=metric&APPID=5a3311ede950f7587784e5f3a3104b99",
                 ];
                 let weatherData = [];
                 for(var i = 0; i < urls.length; i++)
