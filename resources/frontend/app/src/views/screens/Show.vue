@@ -114,7 +114,7 @@
                         link: ''
                     }
                 }).catch((error) => {
-                    this.$swal('Oops!', error.data.message, 'error');
+                    this.$swal('Oops!', error, 'error');
                     this.$bvModal.hide('new-attachment');
                 })
             },
@@ -132,7 +132,7 @@
                         this.$bvModal.hide('delete-confirmation-'+attachment);
                     }).catch((error) => {
                     this.isLoading = false;
-                    this.$swal('Oops', error.data.message, 'error');
+                    this.$swal('Oops', error, 'error');
                 });
             }
         }
