@@ -33,7 +33,7 @@
                 </form>
             </b-modal>
         </div>
-        <div class="py-2" v-if="allAttachments.length > 0">
+        <div class="py-2" v-if="allAttachments && allAttachments.length > 0">
             <h3>Attachments</h3>
             <b-list-group>
                 <b-list-group-item class="flex-column align-items-start shadow border-0" v-for="(attachment, index) in allAttachments" :key="index">
