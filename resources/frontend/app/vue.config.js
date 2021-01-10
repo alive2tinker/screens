@@ -1,6 +1,6 @@
 module.exports = {
     devServer: {
-        proxy: 'https://vue_screens.test'
+        proxy: 'http://screens-app.lndo.site/'
     },
 
     // output built static files to Laravel's public dir.
