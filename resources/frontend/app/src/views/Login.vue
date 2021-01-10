@@ -81,7 +81,7 @@
                                 password: this.form.password,
                                 client_id: 1,
                                 client_secret:
-                                    "hOsqGtCkYYRAJiokfiHjFL9rCHVsupMmGWmr5Jgn",
+                                    "rJErP8RUscHovgnetWjoK9qvk2heA5lKQsnbHe6b",
                                 grant_type: "password"
                             },
                             { root: true }
