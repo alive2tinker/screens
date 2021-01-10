@@ -84,35 +84,36 @@ export default {
         }
       }
 
-      return true;
-    },
-    handleLogin: function (e) {
-      e.preventDefault();
-      if (this.validateInput()) {
-        this.$store
-          .dispatch(
-            "login",
-            {
-              username: this.form.username,
-              password: this.form.password,
-              client_id: 6,
-              client_secret: "cucfvWtW5PBXeeJZ5ZVUhmAcBAo1DPLpMzXQPfsE",
-              grant_type: "password",
+                return true;
             },
-            { root: true }
-          )
-          .then(() => {
-            this.$router.push("/home");
-          })
-          .catch((error) => {
-            console.log(error);
-            this.errors.push({ message: error });
-          });
-        this.loading = false;
-      }
-    },
-  },
-};
+            handleLogin: function(e) {
+                e.preventDefault();
+                if (this.validateInput()) {
+                    this.$store
+                        .dispatch(
+                            "login",
+                            {
+                                username: this.form.username,
+                                password: this.form.password,
+                                client_id: 1,
+                                client_secret:
+                                    "rJErP8RUscHovgnetWjoK9qvk2heA5lKQsnbHe6b",
+                                grant_type: "password"
+                            },
+                            { root: true }
+                        )
+                        .then(() => {
+                            this.$router.push("/home");
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            this.errors.push({message: error});
+                        });
+                    this.loading = false;
+                }
+            }
+        }
+    }
 </script>
 
 <style scoped>
