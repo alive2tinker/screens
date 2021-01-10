@@ -11,6 +11,10 @@ build_as_root:
     - apt-get install -y nodejs
 
 services:
+  myservice:
+     type: php:7.3
+     via: apache:2.4
+     ssl: true
   node:
     type: node
     build:
@@ -29,5 +33,6 @@ tooling:
       - composer install
       - cp .env.example .env
       - php artisan key:generate
+      - cd resources/frontend/app/
       - npm i
-      - npm run dev
+      - npm run serve

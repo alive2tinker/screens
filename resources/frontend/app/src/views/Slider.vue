@@ -1,4 +1,6 @@
 <template>
+    <div>
+        <div class="loading" v-if="isLoading">Loading</div>
     <div v-if="currentScreen && currentSlide">
         <div class="bg"></div>
         <div class="bg bg2"></div>
@@ -86,6 +88,7 @@
             </ul>
         </div>
     </div>
+    </div>
 </template>
 <script>
     import {mapGetters, mapActions} from 'vuex';
@@ -102,12 +105,14 @@
         data(){
             return {
                 currentSlide: null,
-                index: 0
+                index: 0,
+                isLoading: true
             }
         },
         mounted() {
             this.$store.dispatch('fetchScreen',this.$route.params.id)
             .then(()=> {
+                this.isLoading = false
                 this.listenToNew();
                 this.listenToDelete();
             });

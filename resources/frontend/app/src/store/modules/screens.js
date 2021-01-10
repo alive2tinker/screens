@@ -6,108 +6,142 @@ const state = {
     links: null
 };
 const getters = {
-    allScreens: state => {
+    allScreens: state =>
+    {
         return state.screens
     },
-    currentScreen: state => {
+    currentScreen: state =>
+    {
         return state.screen
     }
 };
 const actions = {
-    fetchScreens: ({commit}) => {
-        return new Promise((resolve, reject) => {
+    fetchScreens: ({ commit }) =>
+    {
+        return new Promise((resolve, reject) =>
+        {
             RequestManager().get('api/screens')
-                .then(({data}) => {
+                .then(({ data }) =>
+                {
                     commit('setScreens', data);
                     resolve(true);
-                }).catch((error) => {
+                }).catch((error) =>
+                {
                     reject(error);
-            });
+                });
         });
     },
-    fetchMoreScreens: ({commit}) => {
-        return new Promise((resolve, reject) => {
-            if (state.links.next != null) {
+    fetchMoreScreens: ({ commit }) =>
+    {
+        return new Promise((resolve, reject) =>
+        {
+            if (state.links.next != null)
+            {
                 RequestManager()
                     .get(state.links.next)
-                    .then(({ data }) => {
+                    .then(({ data }) =>
+                    {
                         commit("pushScreens", data);
                         resolve(true);
                     })
-                    .catch(error => {
+                    .catch(error =>
+                    {
                         reject(error);
                     });
-            } else {
+            } else
+            {
                 reject("no more screens");
             }
         });
     },
-    fetchScreen: ({commit}, payload) => {
-        return new Promise((resolve, reject) => {
-            RequestManager().get('api/screens/'+payload)
-                .then(({data}) => {
+    fetchScreen: ({ commit }, payload) =>
+    {
+        return new Promise((resolve, reject) =>
+        {
+            RequestManager().get('api/screens/' + payload)
+                .then(({ data }) =>
+                {
                     commit('setScreen', data);
                     resolve(true);
-                }).catch((error) =>{
-                reject(error);
-            });
+                }).catch((error) =>
+                {
+                    reject(error);
+                });
         });
     },
-    createScreen: ({commit}, payload) => {
-        return new Promise((resolve, reject) => {
+    createScreen: ({ commit }, payload) =>
+    {
+        return new Promise((resolve, reject) =>
+        {
             RequestManager().post('api/screens', payload)
-                .then(({data}) => {
+                .then(({ data }) =>
+                {
                     commit('pushNewScreen', data);
                     resolve(true);
-                }).catch((error) => {
+                }).catch((error) =>
+                {
                     reject(error);
-            });
+                });
         });
     },
-    updateScreen: ({commit}, payload) => {
-        return new Promise((resolve, reject) => {
-            RequestManager().post('api/screens/'+state.screen.id, payload)
-                .then(({data}) => {
+    updateScreen: ({ commit }, payload) =>
+    {
+        return new Promise((resolve, reject) =>
+        {
+            RequestManager().post('api/screens/' + state.screen.id, payload)
+                .then(({ data }) =>
+                {
                     commit('updateStateScreen', data);
                     resolve(true);
-                }).catch((error) => {
-                reject(error);
-            });
+                }).catch((error) =>
+                {
+                    reject(error);
+                });
         });
     },
-    deleteScreen: ({commit}, payload) => {
-        return new Promise((resolve, reject) => {
-            RequestManager().delete('api/screens/'+payload)
-                .then(() => {
+    deleteScreen: ({ commit }, payload) =>
+    {
+        return new Promise((resolve, reject) =>
+        {
+            RequestManager().delete('api/screens/' + payload)
+                .then(() =>
+                {
                     commit('deleteStateScreen', payload);
                     resolve(true);
-                }).catch((error) => {
-                reject(error);
-            });
+                }).catch((error) =>
+                {
+                    reject(error);
+                });
         });
     }
 };
 const mutations = {
-    setScreens: (state, data) => {
+    setScreens: (state, data) =>
+    {
         state.screens = data.data;
         state.links = data.links;
     },
-    setScreen: (state, data) => {
+    setScreen: (state, data) =>
+    {
         state.screen = data;
     },
-    pushScreens: (state, data) => {
+    pushScreens: (state, data) =>
+    {
         state.screens.push(...data.data);
         state.links = data.links;
     },
-    pushNewScreen: (state,data) => {
+    pushNewScreen: (state, data) =>
+    {
         state.screens.unshift(data);
     },
-    updateStateScreen: (state, data) => {
+    updateStateScreen: (state, data) =>
+    {
         var i = state.screens.findIndex(s => s.id === data.id);
         state.screens[i] = data;
     },
-    deleteStateScreen: (state, data) => {
-        var i = state.screens.findIndex(s => s.id === data.id);
+    deleteStateScreen: (state, data) =>
+    {
+        var i = state.screens.findIndex(s => s.id === data);
         state.screens.splice(i, 1);
     }
 };
