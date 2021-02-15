@@ -1,4 +1,4 @@
 export default {
-    devURL: 'https://vue_screens.test/',
-    productionURL: 'https://screens.alive2tinker.com/'
+    devURL: 'http://screens-app.lndo.site/',
+    productionURL: 'http://screens-app.lndo.site/'
 }
