@@ -95,9 +95,9 @@ export default {
                             {
                                 username: this.form.username,
                                 password: this.form.password,
-                                client_id: 3,
+                                client_id: 2,
                                 client_secret:
-                                    "jsqUVnM6WkNRTn765XaGrD51djh9kMFyyRoUkYeq",
+                                    "i4dmuUZjQZV0YeuPbwdgVU0ro3CJvPB3ParP3ByC",
                                 grant_type: "password"
                             },
                             { root: true }
