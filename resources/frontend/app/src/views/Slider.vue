@@ -173,7 +173,7 @@
                 return {type: 'weather', data: weatherData}
             },
             listenToNew: function () {
-                var pusher = new Pusher('e4f4ccec7528c67e4b31', {
+                var pusher = new Pusher('598128a1366d8d8fa2e7', {
                     cluster: 'ap2'
                 });
 
@@ -183,7 +183,7 @@
                 }).bind(this);
             },
             listenToDelete: function () {
-                var pusher = new Pusher('e4f4ccec7528c67e4b31', {
+                var pusher = new Pusher('598128a1366d8d8fa2e7', {
                     cluster: 'ap2'
                 });
 
@@ -191,6 +191,16 @@
                 deletedChannel.bind('App\\Events\\AttachmentDeleted', (data) => {
                     var i = this.currentScreen.attachments.findIndex(s => s.id === data.attachment.id);
                     this.currentScreen.attachments.splice(i, 1)
+                }).bind(this);
+            },
+            listenToMessage: function () {
+                var pusher = new Pusher('598128a1366d8d8fa2e7', {
+                    cluster: 'ap2'
+                });
+
+                var newMessageChannel = pusher.subscribe('screen-'+this.currentScreen.id+'-message-sent');
+                newMessageChannel.bind('App\\Events\\MessageCreated', (data) => {
+                    alert(data);
                 }).bind(this);
             },
             ...mapActions(['fetchScreen'])
