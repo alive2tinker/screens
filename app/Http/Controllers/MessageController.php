@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageCreated;
 use App\Http\Requests\StoreMessage;
 use App\Http\Resources\MessageResource;
 use App\Message;
@@ -28,6 +29,8 @@ class MessageController extends Controller
     public function store(StoreMessage $request)
     {
         $message = Message::create($request->only('text'));
+
+        event(new MessageCreated($message,1));
 
         return response()->json(new MessageResource($message), 201);
     }
