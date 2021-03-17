@@ -42,7 +42,7 @@ class AttachmentController extends Controller
                     'type' => $request->input('type'),
                     'text' => $request->input('text'),
                     'image_link' => $request->hasFile('image')
-                        ? Storage::disk('public')->putFileAs(
+                        ? "storage/" . Storage::disk('public')->putFileAs(
                             "screen_" .$screen->id . "_attachments",
                             $request->file('image'),
                             strtolower(str_replace(" ", "_", $request->input('title'))) . '.' . $request->file('image')->getClientOriginalExtension()) : ''
