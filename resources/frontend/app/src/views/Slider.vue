@@ -262,7 +262,7 @@
     }
     #content-container{
         width: 95%;
-        height: 95vh;
+        height: 95vh !important;
     }
     #quote-mark{
         font-weight: bold;
