@@ -130,13 +130,14 @@
                 {
                   if(this.currentSlide != null && this.currentSlide.type !== 'youtube')
                   {
-                      var weatherTime = Math.random() > 0.9;
-                      if(weatherTime)
-                      {
-                          this.currentSlide = this.generateWeatherSlide();
-                      }else{
-                          this.nextSlide()
-                      }
+                      this.nextSlide();
+                    //   var weatherTime = Math.random() > 0.9;
+                    //   if(weatherTime)
+                    //   {
+                    //       this.currentSlide = this.generateWeatherSlide();
+                    //   }else{
+                    //       this.nextSlide()
+                    //   }
                   }else{
                       this.currentSlide = this.currentScreen.attachments[this.index];
                   }
@@ -261,7 +262,7 @@
     }
     #content-container{
         width: 95%;
-        height: 80vh;
+        height: 95vh;
     }
     #quote-mark{
         font-weight: bold;
