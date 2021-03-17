@@ -78,7 +78,8 @@
                 </div>
             </div>
         </div>
-        <div id="clock-container">
+	<!--
+	<div id="clock-container">
             <digital-clock :blink="true" class="font-weight-bold font-italic"></digital-clock>
             <small>{{ new Date() | moment("dddd,  MMMM Do") }}</small>
         </div>
@@ -87,7 +88,8 @@
                 <li v-for="message in currentScreen.messages" :key="message.id">{{ message.text }}</li>
             </ul>
         </div>
-    </div>
+    	-->
+	</div>
     </div>
 </template>
 <script>
