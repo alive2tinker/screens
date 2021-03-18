@@ -203,6 +203,8 @@ export default {
         })
         .catch((error) => {
           console.log(process.env.baseURL);
+          console.log("This is your error object");
+          console.log(error);
           this.$swal("Oops!", error, "error");
           this.$bvModal.hide("new-attachment");
         });
