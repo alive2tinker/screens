@@ -25,6 +25,15 @@
                     </div>
                 </b-media>
             </div>
+            <div v-if="currentSlide.type === 'employee'">
+                <div class="employee">
+                    <div class="d-flex justify-content-center">
+                        <img :src='currentSlide.image' class="employee-picture">
+                    </div>
+                <h1 class="display-1 text-center">{{ currentSlide.employeeName }}<small><br><span class="badge badge-danger" style="font-size:20px;">قريبا</span></small></h1>
+                <h1 class="display-4 text-center">موظف الشهر</h1>
+                </div>
+            </div>
             <div v-if="currentSlide.type === 'quote'">
                 <div class="quote-background shadow"
                      :style="
@@ -327,6 +336,13 @@
         display: block;
         position: relative;
         bottom: 10px;
+    }
+    .employee{
+        width:60%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 5%;
+        color: #fff;
     }
     @keyframes slide {
         0% {

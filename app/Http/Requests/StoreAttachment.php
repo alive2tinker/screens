@@ -28,7 +28,8 @@ class StoreAttachment extends FormRequest
             'type' => "required",
             'text' => "required_if:type,quote",
             'image' => "required_if:type,quote|required_if:type,image",
-            'link' => "required_if:type,youtube|required_if:type,tweet"
+            'link' => "required_if:type,youtube|required_if:type,tweet",
+            'employeeName' => "required_if:type,employee"
         ];
     }
 }

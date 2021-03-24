@@ -59,6 +59,22 @@ class AttachmentController extends Controller
                             strtolower(str_replace(" ", "_", $request->input('title'))) . '.' .$request->file('image')->getClientOriginalExtension()) : ''
                 ]);
                 break;
+            case 'employee':
+                $employeeScreen = Attachment::where('type','employee')->first();
+                if($employeeScreen)
+                    return response()->json("You already have employee attachment. kindly update that one", 401);
+
+                $attachment = $screen->attachments()->create([
+                    'employee_name' => $request->input('employeeName'),
+                    'title' => $request->input('title'),
+                    'type' => $request->input('type'),
+                    'image_link' => $request->hasFile('image')
+                    ? "storage/" . Storage::disk('public')->putFileAs(
+                        "screen_" .$screen->id . "_attachments",
+                        $request->file('image'),
+                        strtolower(str_replace(" ", "_", $request->input('employeeName'))) . '.' .$request->file('image')->getClientOriginalExtension()) : ''
+                ]);
+                break;
             case 'youtube':
                 $attachment = $screen->attachments()->create([
                     'title' => $request->input('title'),

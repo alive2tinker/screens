@@ -30,12 +30,17 @@
                 class="form-control"
               >
                 <option value="">Choose</option>
+                <option value="employee">Employee of the week</option>
                 <option value="quote">Quote</option>
                 <option value="image">Image</option>
                 <option value="youtube">Youtube</option>
                 <option value="tweet">Tweet</option>
               </select>
             </div>
+            <div class="form-group" v-if="form.type === 'employee'">
+              <label for="employee-name">Employee Name</label>
+              <input type="text" class="form-control" v-model="form.employeeName">  
+            </div> 
             <div class="form-group" v-if="form.type === 'quote'">
               <label for="attachment-text">Quote Text</label>
               <textarea
@@ -48,7 +53,7 @@
             </div>
             <div
               class="form-group"
-              v-if="form.type === 'quote' || form.type === 'image'"
+              v-if="form.type === 'quote' || form.type === 'image' || form.type === 'employee'"
             >
               <label for="attachment-file">Image</label>
               <input
@@ -162,6 +167,7 @@ export default {
         text: "",
         image: "",
         link: "",
+        employeeName: ""
       },
       errors: [],
       isLoading: false,
@@ -199,6 +205,7 @@ export default {
             text: "",
             image: "",
             link: "",
+            employeeName: "",
           };
         })
         .catch((error) => {

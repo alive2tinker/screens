@@ -21,7 +21,8 @@ class AttachmentResource extends JsonResource
             'youtube' => $this->youtube_link,
             'tweetInfo' => $this->tweet_info,
             'type' => $this->type,
-            'text' => $this->text
+            'text' => $this->text,
+            'employeeName' => $this->employee_name
         ];
     }
 }
