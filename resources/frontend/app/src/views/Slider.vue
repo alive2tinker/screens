@@ -267,7 +267,7 @@
     }
     #content-container{
         width: 95%;
-        height: 95vh !important;
+        height: 80vh;
     }
     #q-author::before{
        content: '';
