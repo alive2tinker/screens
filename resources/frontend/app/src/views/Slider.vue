@@ -216,12 +216,12 @@
 </script>
 <style scoped>
     html{
-        background: #0c5460;
+        background: #0b5b8c;
         overflow: hidden !important;
     }
     .bg {
         animation:slide 3s ease-in-out infinite alternate;
-        background-image: linear-gradient(-60deg, #0c5460 50%, #204340 50%);
+        background-image: linear-gradient(-60deg, #106eaf  50%, #1fa496 50%);
         bottom:0;
         left:-50%;
         opacity:.5;
