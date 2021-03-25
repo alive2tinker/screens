@@ -39,7 +39,7 @@
                      :style="
                              'background-image: url('+currentSlide.image+');'">
                     <div class="quote-container">
-                        <h1 id="quote-text">{{ currentSlide.text }}</h1>
+                        <h1 id="quote-text" class="display-1">{{ currentSlide.text }}</h1>
                         <h3 class="my-5 text-center text-white" id="q-author">
                             {{  currentSlide.quoteAuthor }}
                         </h3>
