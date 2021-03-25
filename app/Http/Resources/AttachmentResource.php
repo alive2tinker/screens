@@ -22,7 +22,8 @@ class AttachmentResource extends JsonResource
             'tweetInfo' => $this->tweet_info,
             'type' => $this->type,
             'text' => $this->text,
-            'employeeName' => $this->employee_name
+            'employeeName' => $this->employee_name,
+            'quoteAuthor' => $this->quote_author
         ];
     }
 }

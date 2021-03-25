@@ -41,6 +41,7 @@ class AttachmentController extends Controller
                     'title' => $request->input('title'),
                     'type' => $request->input('type'),
                     'text' => $request->input('text'),
+                    'quote_author' => $request->input('quoteAuthor'),
                     'image_link' => $request->hasFile('image')
                         ? "storage/" . Storage::disk('public')->putFileAs(
                             "screen_" .$screen->id . "_attachments",

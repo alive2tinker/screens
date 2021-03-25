@@ -13,7 +13,8 @@ class Attachment extends Model
         'image_link',
         'youtube_link',
         'tweet_info',
-        'employee_name'
+        'employee_name',
+        'quote_author'
     ];
 
     protected $casts = [

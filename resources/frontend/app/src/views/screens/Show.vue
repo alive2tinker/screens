@@ -39,9 +39,11 @@
             </div>
             <div class="form-group" v-if="form.type === 'employee'">
               <label for="employee-name">Employee Name</label>
-              <input type="text" class="form-control" v-model="form.employeeName">  
-            </div> 
+              <input type="text" class="form-control" v-model="form.employeeName">
+            </div>
             <div class="form-group" v-if="form.type === 'quote'">
+                <label for="quote-author">Quote Author</label>
+                <input type="text" class="form-control" id="quote-author" v-model="form.quoteAuthor">
               <label for="attachment-text">Quote Text</label>
               <textarea
                 v-model="form.text"
@@ -167,7 +169,8 @@ export default {
         text: "",
         image: "",
         link: "",
-        employeeName: ""
+        employeeName: "",
+        quoteAuthor:''
       },
       errors: [],
       isLoading: false,

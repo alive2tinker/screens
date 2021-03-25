@@ -38,16 +38,11 @@
                 <div class="quote-background shadow"
                      :style="
                              'background-image: url('+currentSlide.image+');'">
-                    <div class="container-fluid py-5">
-                        <div class="row">
-                            <div class="col-md-8"></div>
-                            <div class="col-md-4 text-center light-dark">
-                                <p id="quote-mark">"</p>
-                                <article id="quote-text">
-                                    {{ currentSlide.text }}
-                                </article>
-                            </div>
-                        </div>
+                    <div class="quote-container">
+                        <h1 id="quote-text">{{ currentSlide.text }}</h1>
+                        <h3 class="my-5 text-center text-white" id="q-author">
+                            {{  currentSlide.quoteAuthor }}
+                        </h3>
                     </div>
                 </div>
             </div>
@@ -249,9 +244,10 @@
         width: 100% !important;
     }
     .quote-background{
-        height: 80vh !important;
+        height: 90vh !important;
         background-repeat: no-repeat;
         background-size: cover;
+        background-position: center;
     }
     .light-dark{
         background: rgba(0,0,0,0.4);
@@ -273,12 +269,33 @@
         width: 95%;
         height: 95vh !important;
     }
+    #q-author::before{
+       content: '';
+        width: 20px;
+        position: absolute;
+        height: 3px;
+        background: white;
+        margin-top: 2.5%;
+        left: 35%;
+    }
+    .quote-container{
+        margin-top: 5%;
+        position: absolute;
+        width: 40%;
+        /* right: 50%; */
+        left: 50%;
+        transform: translateX(-50%);
+        border: 4px solid #fff;
+        padding: 5%;
+    }
+    #quote-text{
+        color: #ffffff;
+        text-shadow: 0 0 25px #444444;
+        text-align: center;
+    }
     #quote-mark{
         font-weight: bold;
         font-size: 150px;
-    }
-    #quote-text{
-        font-size: 30px;
     }
     #messages-container{
         width: 100%;
