@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="loading" v-if="isLoading">Loading</div>
+    <div class="loading" v-if="isLoading">Loading</div>
     <div v-if="currentScreen && currentSlide">
         <div class="bg"></div>
         <div class="bg bg2"></div>
@@ -38,6 +38,7 @@
                 <div class="quote-background shadow"
                      :style="
                              'background-image: url('+currentSlide.image+');'">
+                    <img class="nhc-logo" src="/images/nhc-1-svg.png" alt="">
                     <div class="quote-container">
                         <h1 id="quote-text" class="display-1">{{ currentSlide.text }}</h1>
                         <h3 class="my-5 text-center text-white" id="q-author">
@@ -47,6 +48,7 @@
                 </div>
             </div>
             <div v-if="currentSlide.type === 'image'">
+                <img class="nhc-logo" src="/images/nhc-1-svg.png" alt="">
                 <div class="quote-background"
                      :style="
                              'background-image: url('+currentSlide.image+');'">
@@ -360,6 +362,12 @@
         margin-right: auto;
         padding-top: 1%;
         color: #fff;
+    }
+    .nhc-logo{
+        width: 8%;
+        margin-top: 1%;
+        float: right;
+        margin-right: 1%;
     }
     @keyframes slide {
         0% {
