@@ -107,8 +107,8 @@ class AttachmentController extends Controller
                 ]);
                 break;
         }
-
-        event(new NewAttachment(new AttachmentResource($attachment), $screen));
+        if(env('APP_ENV') == 'production')
+            event(new NewAttachment(new AttachmentResource($attachment), $screen));
 
         return response()->json(new AttachmentResource($attachment), 201);
     }
